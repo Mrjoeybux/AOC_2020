@@ -30,7 +30,7 @@ class BagDataStructure:
 		else:
 			ret_str = "A {} bag that can hold: \n".format(self.colour)
 		for child_colour in self.contents.keys():
-			if child_colour == None:
+			if child_colour is None:
 				ret_str += "-No other bags\n"
 			elif self.contents[child_colour] == 1:
 				ret_str += "-{} {} bag\n".format(self.contents[child_colour], child_colour)
@@ -87,7 +87,7 @@ def problem_1(path):
 			new_parents.update(parents)
 		possible_routes.update(new_parents)
 		curent_children = list(new_parents)
-		if curent_children == []:
+		if not curent_children:
 			break
 	return len(possible_routes)
 
@@ -102,28 +102,14 @@ def traverse_bag_tree(bag_dict, current_node):
 	return count
 
 
-
-
 def problem_2(path):
 	bag_dict = parse_input(path)
-	bag_counter = 0
 	current_bag = "shiny gold"
-	print(traverse_bag_tree(bag_dict, current_bag), "hi")
-	"""while True:
-		for bag in current_bags:
-			children = bag_dict[bag].children()
-			for child in children:
-				bag_counter += bag_dict[bag].bags_per_child(child)
-		current_bags = children
-		if all([bag_dict[bag].is_empty() for bag in current_bags]):
-			break
-	return bag_counter"""
-
-
+	print(traverse_bag_tree(bag_dict, current_bag))
 
 
 if __name__ == "__main__":
 	path = "./input.txt"
-	#print(problem_1(path))
+	print(problem_1(path))
 	print(problem_2(path))
 
